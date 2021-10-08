@@ -34,9 +34,12 @@ git clone https://github.com/feferna/psoCNN.git
 
 cd psoCNN
 
-conda env create -f psoCNN_env.yml
+//conda env create -f psoCNN_env.yml
+conda create -n psocnn python=3.7
 
 conda activate psoCNN
+
+pip install -r requirements.txt
 ```
 
 **Note1:** If your system has all the packages listed in the file psoCNN_env.yml, the code presented here should be able to run on Windows, macOS, or Linux.
