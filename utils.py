@@ -8,6 +8,14 @@ except ImportError:
     # Python 3 module
     from itertools import zip_longest
 
+from tensorflow import keras
+## For more information into formulation: https://www.youtube.com/watch?v=AZr64OxshLo
+## Metric
+def dice_coef(y_true, y_pred):
+    y_true_f = keras.backend.flatten(y_true)
+    y_pred_f = keras.backend.flatten(y_pred)
+    intersection = keras.backend.sum(y_true_f * y_pred_f)
+    return (2. * intersection) / (keras.backend.sum(y_true_f + y_pred_f))
 def add_conv(layers, max_out_ch, conv_kernel):
     out_channel = np.random.randint(3, max_out_ch)
     conv_kernel = np.random.randint(3, conv_kernel)

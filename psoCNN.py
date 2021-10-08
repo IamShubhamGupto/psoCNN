@@ -9,6 +9,7 @@ from population import Population
 import numpy as np
 
 from copy import deepcopy
+from generator import createAugment
 
 class psoCNN:
     def __init__(self, dataset, n_iter, pop_size, batch_size, epochs, min_layer, max_layer, \
@@ -22,7 +23,17 @@ class psoCNN:
         self.gBest_acc = np.zeros(n_iter)
         self.gBest_test_acc = np.zeros(n_iter)
 
-        if dataset == "mnist":
+        if dataset == "cifar10":
+            input_width = 32
+            input_height = 32
+            input_channels = 3
+            output_channels = 3
+            output_width = 32
+            output_height = 32
+            (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
+
+        elif dataset == "mnist":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -30,7 +41,7 @@ class psoCNN:
 
             (self.x_train, self.y_train), (self.x_test, self.y_test) = mnist.load_data()
         
-        if dataset == "fashion-mnist":
+        elif dataset == "fashion-mnist":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -43,7 +54,7 @@ class psoCNN:
             self.x_train /= 255
             self.x_test /= 255
 
-        if dataset == "mnist-background-images":
+        elif dataset == "mnist-background-images":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -62,7 +73,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "mnist-rotated-digits":
+        elif dataset == "mnist-rotated-digits":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -81,7 +92,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "mnist-random-background":
+        elif dataset == "mnist-random-background":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -100,7 +111,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "mnist-rotated-with-background":
+        elif dataset == "mnist-rotated-with-background":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -119,7 +130,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "rectangles":
+        elif dataset == "rectangles":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -138,7 +149,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "rectangles-images":
+        elif dataset == "rectangles-images":
             input_width = 28
             input_height = 28
             input_channels = 1
@@ -157,7 +168,7 @@ class psoCNN:
             self.y_train = train[:, -1]
             self.y_test = test[:, -1]
 
-        if dataset == "convex":
+        elif dataset == "convex":
             input_width = 28
             input_height = 28
             input_channels = 1
