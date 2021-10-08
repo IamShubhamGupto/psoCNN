@@ -30,11 +30,9 @@ F. E. Fernandes Junior and G. G. Yen, “**Particle swarm optimization of deep n
 Make sure you have Anaconda installed in your system. Then, run each command in a terminal window:
 
 ```
-git clone https://github.com/feferna/psoCNN.git
 
 cd psoCNN
 
-//conda env create -f psoCNN_env.yml
 conda create -n psocnn python=3.7
 
 conda activate psoCNN
